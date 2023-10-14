@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentFactory
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -32,7 +33,8 @@ class MainFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val url = "https://api.weatherapi.com/v1/forecast.json?key=9bcfb053b7d247fda8c53154230810&q=Tashkent&days=7&aqi=yes&alerts=yes"
+    val url =
+        "https://api.weatherapi.com/v1/forecast.json?key=9bcfb053b7d247fda8c53154230810&q=Tashkent&days=7&aqi=yes&alerts=yes"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,7 @@ class MainFragment : Fragment() {
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
         val requestQueue = Volley.newRequestQueue(requireContext())
-        val request = JsonObjectRequest(url,object : Response.Listener<JSONObject>{
+        val request = JsonObjectRequest(url, object : Response.Listener<JSONObject> {
             override fun onResponse(response: JSONObject) {
 
                 val forecast = response.getJSONObject("forecast")
@@ -57,7 +59,7 @@ class MainFragment : Fragment() {
                 val forecastday = forecast.getJSONArray("forecastday")
                 val today = forecastday.getJSONObject(0)
                 val todays = today.getString("date")
-                val date = todays.substring(8,todays.length)
+                val date = todays.substring(8, todays.length)
 
                 val tempday = today.getJSONObject("day")
                 val temp = tempday.getString("maxtemp_c")
@@ -66,13 +68,13 @@ class MainFragment : Fragment() {
 
                 val image = cond.getString("icon")
 
-                binding.weathericon.load("https:"+image)
+                binding.weathericon.load("https:" + image)
                 binding.context.text = context
                 binding.date.text = "Today " + date + " October"
-                binding.temp.text = temp
+                binding.temp.text = temp + "°"
 
             }
-        },object : Response.ErrorListener{
+        }, object : Response.ErrorListener {
             override fun onErrorResponse(error: VolleyError?) {
                 Log.d("TAG", "onErrorResponse: $error")
             }
@@ -82,7 +84,7 @@ class MainFragment : Fragment() {
 
 
         binding.forecast.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.main_activity,ForecastFragment()).commit()
+            findNavController().navigate(R.id.action_mainFragment_to_forecastFragment)
         }
         return binding.root
     }

@@ -7,13 +7,21 @@
     android:background="@drawable/back"
     android:orientation="vertical"
     tools:context=".MainFragment">
-
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="Tashkent, Uzbekistan"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
     <ImageView
         android:id="@+id/weathericon"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/img" />
 

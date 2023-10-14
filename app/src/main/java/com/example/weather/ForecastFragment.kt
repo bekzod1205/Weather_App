@@ -60,6 +60,11 @@ class ForecastFragment : Fragment() {
                 val forecastday = forecast.getJSONArray("forecastday")
                 val today = forecastday.getJSONObject(0)
                 val hours = today.getJSONArray("hour")
+                val todays = today.getString("date")
+                var date = todays.substring(5,todays.length)
+                date= date.replace('-','.')
+                binding.date.text = date
+
 
                 for (i in 0 until hours.length()){
                     obj = hours.getJSONObject(i)
@@ -78,6 +83,7 @@ class ForecastFragment : Fragment() {
                 Log.d("TAG", "onErrorResponse: $error")
             }
         })
+
 
         requestQueue.add(request)
 

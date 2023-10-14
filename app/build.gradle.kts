@@ -52,4 +52,7 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.10.1")
 
     implementation("io.coil-kt:coil:2.4.0")
+
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.5.3")
 }
