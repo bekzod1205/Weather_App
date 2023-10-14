@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.weather"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.weather"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -47,4 +47,9 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation ("com.android.volley:volley:1.2.1")
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+    implementation("io.coil-kt:coil:2.4.0")
 }
